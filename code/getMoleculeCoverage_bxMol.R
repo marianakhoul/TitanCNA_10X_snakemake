@@ -163,9 +163,9 @@ getOverlapCountByBin <- function(bx, bins, chrs=c(1:22,"X","Y"), minReads = 2, m
 			bxChr <- bx[[i]]
 			chrStr <- bxChr[1, chr]
 			bxChr <- bxChr[ReadCount >= minReads & length >= minLengthMI & length <= maxLengthMI, ]
-			bxGR <- RangedData(space = bxChr[, chr], ranges = IRanges(start = bxChr[, start], 
+			bxGR <- GRanges(space = bxChr[, chr], ranges = IRanges(start = bxChr[, start], 
 											 end = bxChr[, end]), BX = bxChr[, BX], 
-											 ReadCount = bxChr[, ReadCount], length = bxChr[, length])
+											 ReadCount = bxChr[, ReadCount], length = bxChr[, length]) # was RangedData
 			#message("Computing molecule counts")
 			hits <- countOverlaps(query = bins[chrStr], subject = bxGR)
 			bins.dt[space==chrStr, value := as.vector(unlist(hits))]
@@ -173,7 +173,7 @@ getOverlapCountByBin <- function(bx, bins, chrs=c(1:22,"X","Y"), minReads = 2, m
 		
 	}
 	message("")
-	bins <- as(as.data.frame(bins.dt), "RangedData")
+	bins <- as(as.data.frame(bins.dt), "GRanges") #was RangedData
 	return(bins)
 
 }
@@ -289,7 +289,7 @@ for (i in 1:numSamples) {
                                        chrNormalize = chrNormalize, mapScoreThres = 0.9,
                                        fracReadsInChrYForMale = fracReadsInChrYForMale,
                                        chrXMedianForMale = -0.3)
-  tumour_copy[[id]] <- counts$counts #as(counts$counts, "GRanges")
+  tumour_copy[[id]] <- as(counts$counts, "GRanges") #changed from counts$counts 
   #gender <- counts$gender
  	## load in normal file if provided 
  	if (!is.null(normal_file)){
@@ -303,7 +303,7 @@ for (i in 1:numSamples) {
 				centromere=centromere, flankLength = flankLength, targetedSequences=targetedSequences,
 				chrNormalize = chrNormalize, mapScoreThres = 0.9,
 				fracReadsInChrYForMale = fracReadsInChrYForMale, chrXMedianForMale = -0.3)
-		normal_copy <- counts$counts #as(counts$counts, "GRanges")
+		normal_copy <- as(counts$counts, "GRanges") #changed from counts$counts 
 		gender <- counts$gender
 	}else{
 	  normal_copy <- NULL
