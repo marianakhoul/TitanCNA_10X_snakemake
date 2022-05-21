@@ -6,7 +6,7 @@ CHRS = ['chr1','chr2','chr3','chr4','chr5','chr6','chr7','chr8','chr9','chr10','
 
 import glob
 def getLRFullPath(base, filename):
-  return glob.glob(''.join([base, "/*/outs/", filename]))
+  return glob.glob(''.join([base, filename]))
 
 
 rule correctMolCov:
