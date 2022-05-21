@@ -289,7 +289,7 @@ for (i in 1:numSamples) {
                                        chrNormalize = chrNormalize, mapScoreThres = 0.9,
                                        fracReadsInChrYForMale = fracReadsInChrYForMale,
                                        chrXMedianForMale = -0.3)
-  tumour_copy[[id]] <- as(counts$counts, "GRanges") #changed from counts$counts 
+  tumour_copy[[id]] <- counts$counts #as(counts$counts, "GRanges") #changed from counts$counts 
   #gender <- counts$gender
  	## load in normal file if provided 
  	if (!is.null(normal_file)){
@@ -303,7 +303,7 @@ for (i in 1:numSamples) {
 				centromere=centromere, flankLength = flankLength, targetedSequences=targetedSequences,
 				chrNormalize = chrNormalize, mapScoreThres = 0.9,
 				fracReadsInChrYForMale = fracReadsInChrYForMale, chrXMedianForMale = -0.3)
-		normal_copy <- as(counts$counts, "GRanges") #changed from counts$counts 
+		normal_copy <- counts$counts #as(counts$counts, "GRanges") #changed from counts$counts 
 		gender <- counts$gender
 	}else{
 	  normal_copy <- NULL
