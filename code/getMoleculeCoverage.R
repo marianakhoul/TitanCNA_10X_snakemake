@@ -214,7 +214,7 @@ for (i in 1:numSamples) {
 		counts.normal <- loadReadCountsFromWig(normal_doc, chrs=chrs, gc=gc, map=map, repTime = repTime, 
         genomeStyle = genomeStyle, centromere=centromere, flankLength = flankLength, 
         targetedSequences=targetedSequences, chrNormalize = chrNormalize, mapScoreThres = 0.9)
-		normal_copy <- as(counts$counts, "GRanges") #counts.normal$counts -- trying this
+		normal_copy <- counts.normal$counts #as(counts$counts, "GRanges") 
     counts[[id]]$counts$cor.gc.normal <- counts.normal$counts$cor.gc
     counts[[id]]$counts$cor.map.normal <- counts.normal$counts$cor.map
     counts[[id]]$counts$cor.rep.normal <- counts.normal$counts$cor.rep
