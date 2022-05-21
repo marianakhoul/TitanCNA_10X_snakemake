@@ -1,6 +1,12 @@
 samples:
-  tumor_sample_1:  /path/to/tumor/longranger/dir
-  normal_sample_1:  /path/to/normal/longranger/dir
+  DTRCC10_Rkidney:  /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC10_Rkidney/
+  DTRCC10_Blood:  /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC10_Blood/
+  DTRCC6_AdjNormal:  /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC6_AdjNormal/
+  DTRCC6_LKidneyResection: /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC6_LKidneyResection/
+  DTRCC8_Blood:  /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC8_Blood/
+  DTRCC8_Lkidney:  /mnt/storage/labs/sviswanathan/tRCC_data/bamlinks/linked_reads/DTRCC8_Lkidney/
 
 pairings:
-  tumor_sample_1:  normal_sample_1
+  DTRCC10_Rkidney:  DTRCC10_Blood
+  DTRCC8_Lkidney:  DTRCC8_Blood
+  DTRCC6_LKidneyResection:  DTRCC6_AdjNormal
