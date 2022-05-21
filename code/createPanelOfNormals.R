@@ -95,13 +95,13 @@ message("Reading GC and mappability files")
 if (is.null(gcWig)) {
   stop("GC Wig file required")
 } else {
-  gc <- wigToRangedData(gcWig)
+  gc <- wigToGRanges(gcWig)
 }
 if (is.null(mapWig)) {
   message("Normalizing without mappability Wig file.")
   map <- NULL
 } else {
-  map <- wigToRangedData(mapWig)
+  map <- wigToGRanges(mapWig)
 }
 
 normalGR <- NULL
