@@ -1,6 +1,8 @@
 # *Snakemake workflow for TITAN analysis of 10X Genomics WGS*
 
 # Description
+Fixes Error: RangedData objects are deprecated and the coercion method from data.frame or DataTable to RangedData is now defunct. Please migrate your code to use GRanges or GRangesList objects instead
+
 This workflow will run the TITAN copy number analysis for set of tumour-normal pairs, starting from the BAM files aligned using [Long Ranger](https://support.10xgenomics.com/genome-exome/software/pipelines/latest/what-is-long-ranger) software. The analysis includes haplotype-based copy number prediction and post-processing of results. It will also perform model selection at the end of the workflow to choose the optimal ploidy and clonal cluster solutions.  
 [Viswanathan SR*, Ha G*, Hoff A*, et al. Structural Alterations Driving Castration-Resistant Prostate Cancer Revealed by Linked-Read Genome Sequencing. *Cell* 174, 433–447.e19 (2018).](https://www.cell.com/cell/abstract/S0092-8674(18)30648-2)
 
