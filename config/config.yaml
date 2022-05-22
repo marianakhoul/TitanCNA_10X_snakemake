@@ -1,6 +1,6 @@
 ## path to tools ##
-samTools:  /mnt/storage/apps/samtools/1.9/bin/samtools ## need to specify
-bxTools:  /home/mi724/Tools/bxtools/src/bxtools ## need to specify
+samTools:  /path/to/samtools ## need to specify
+bxTools:  /path/to/bxtools ## need to specify
 
 ## paths to scripts ##
 molCov_script:  code/getMoleculeCoverage.R
@@ -9,13 +9,13 @@ phaseCounts_counts_script:  code/getTumourAlleleCountsAtHETSites.py
 TitanCNA_rscript: code/titanCNA_v1.21.0_TenX.R
 TitanCNA_selectSolutionRscript: code/selectSolution.R
 TitanCNA_combineTitanIchorCNA:  code/combineTITAN-ichor_v2.R
-TitanCNA_libdir:  /home/mi724/Tools/TitanCNA ## optional; Changed this because of the RangedData
-ichorCNA_libdir:  /home/mi724/Tools/ichorCNA ## optional
+TitanCNA_libdir:  /path/to/TitanCNA ## optional; Changed this because of the RangedData
+ichorCNA_libdir:  /path/to/ichorCNA ## optional
 
 ## reference settings ##
 genomeBuild: hg38
 genomeStyle:  UCSC
-snpVCF:  /mnt/storage/labs/sviswanathan/GATK_ref/hapmap_3.3.hg38.vcf.gz ## optional
+snpVCF:  /path/to/hapmap_3.3.hg38.vcf.gz ## optional
 cytobandFile:  data/cytoBand_hg38.txt # only need if hg38
 centromere:  data/GRCh38.GCA_000001405.2_centromere_acen.txt
 sex:  female   # use None if both females and males are in sample set
