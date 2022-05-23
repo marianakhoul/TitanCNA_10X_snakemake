@@ -16,7 +16,7 @@ option_list <- list(
   make_option(c("--minReadsPerBX"), type="integer", default=2, help="Minimum number of reads per barcode. [Default: %default]"),
   make_option(c("--gcWig"), type = "character", help = "Path to GC-content WIG file; Required"),
   make_option(c("--mapWig"), type = "character", default=NULL, help = "Path to mappability score WIG file. Default: [%default]"),
-  make_option(c("--repTimeWig"), type = "character", default=NULL, help ="Path to replication timing WIG file. Default: [%default]"),
+  #make_option(c("--repTimeWig"), type = "character", default=NULL, help ="Path to replication timing WIG file. Default: [%default]"),
   make_option(c("--normalPanel"), type="character", default=NULL, help="Median corrected depth from panel of normals. Default: [%default]"),
   make_option(c("--exons.bed"), type = "character", default=NULL, help = "Path to bed file containing exon regions. Default: [%default]"),
   make_option(c("--likModel"), type="character", default="t", help="Likelihood model to use. \"t\" or \"gaussian\". Use \"gaussian\" for faster runtimes. Default: [%default]"),
@@ -78,7 +78,7 @@ normal_file <- opt$normalBXDir
 minReadsPerBX <- opt$minReadsPerBX
 gcWig <- opt$gcWig
 mapWig <- opt$mapWig
-repTimeWig <- opt$repTimeWig
+#repTimeWig <- opt$repTimeWig
 normal_panel <- opt$normalPanel
 exons.bed <- opt$exons.bed  # "0" if none specified
 likModel <- opt$likModel
@@ -176,15 +176,6 @@ map <- wigToGRanges(mapWig)
 if (is.null(map)){
   message("No mappability wig file input, excluding from correction")
 }
-repTime <- wigToGRanges(repTimeWig)
-if (is.null(repTime)){
-  message("No replication timing wig file input, excluding from correction")
-}else{
-  if (mean(repTime$value, na.rm = TRUE) > 1){
-    repTime$value <- repTime$value / 100 ## want values in [0,1] - for LNCaP_repTime_10kb_hg38.txt
-  }
-}
-
 
 ## LOAD IN WIG FILES ##
 numSamples <- 1
@@ -201,7 +192,7 @@ for (i in 1:numSamples) {
   ## LOAD GC/MAP WIG FILES ###
   message("Correcting Tumour")
   counts[[id]] <- loadReadCountsFromWig(tumour_doc, chrs = chrs, genomeStyle = genomeStyle,
-  									   gc = gc, map = map, repTime = repTime,
+  									   gc = gc, map = map, repTime = NULL,
                                        centromere = centromere, flankLength = flankLength, 
                                        targetedSequences = targetedSequences, 
                                        chrNormalize = chrNormalize, mapScoreThres = 0.9)
@@ -212,7 +203,7 @@ for (i in 1:numSamples) {
 		normal_doc <- loadBXcountsFromBEDDir(normal_file, chrs = chrsAll, minReads = minReadsPerBX)
 		normal_doc$BX.medianNorm <- log2(normal_doc$BXcounts / median(normal_doc$BXcounts, na.rm=T))
 		message("Correcting Normal")
-		counts.normal <- loadReadCountsFromWig(normal_doc, chrs=chrs, gc=gc, map=map, repTime = repTime, 
+		counts.normal <- loadReadCountsFromWig(normal_doc, chrs=chrs, gc=gc, map=map, repTime = NULL, 
         genomeStyle = genomeStyle, centromere=centromere, flankLength = flankLength, 
         targetedSequences=targetedSequences, chrNormalize = chrNormalize, mapScoreThres = 0.9)
 		normal_copy <- counts.normal$counts #as(counts$counts, "GRanges") 
