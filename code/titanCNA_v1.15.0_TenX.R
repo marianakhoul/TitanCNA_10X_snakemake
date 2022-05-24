@@ -271,7 +271,7 @@ for (chr in chrsToPlot){
 		chrStr <- paste0("chr", chr)
 	}	
 	outfig <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_", chrStr, ".png")
-	png(outfig,width=1200,height=1000,res=100)
+	pdf(outfig,width=20,height=6)
 	par(mfrow=c(5,1))  
 
 	if (genomeStyle == "UCSC"){
