@@ -273,7 +273,8 @@ for (chr in chrsToPlot){
 		chrStr <- paste0("chr", chr)
 	}	
 	outfig <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_", chrStr, ".png")
-	png(outfig,width=1200,height=1000,res=100)
+	#png(outfig,width=1200,height=1000,res=100)
+	pdf(outfit,width=20,height=6)
 	par(mfrow=c(5,1))  
 
 	if (genomeStyle == "UCSC"){
@@ -314,50 +315,50 @@ for (chr in chrsToPlot){
 ################################################
 ############## GENOME WIDE PLOTS ###############
 ################################################
-outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_CNA.png")
-png(outFile,width=1200,height=400,res=100)
-#pdf(outFile,width=20,height=6)
+outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_CNA.pdf")
+#png(outFile,width=1200,height=400,res=100)
+pdf(outFile,width=20,height=6)
 plotCNlogRByChr(dataIn=results, chr=chrs, segs = segs, ploidy=ploidy,  normal = norm, geneAnnot=genes, spacing=4, main=id, xlab="", ylim=plotYlim, cex=0.5, cex.axis=1.5, cex.lab=1.5, cex.main=1.5)
 dev.off()
 
-outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_LOH.png")
-png(outFile,width=1200,height=400,res=100)
-#pdf(outFile,width=20,height=6)
+outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_LOH.pdf")
+#png(outFile,width=1200,height=400,res=100)
+pdf(outFile,width=20,height=6)
 plotAllelicRatio(dataIn=results, chr=chrs, geneAnnot=genes, spacing=4, main=id, xlab="", ylim=c(0,1), cex=0.5, cex.axis=1.5, cex.lab=1.5, cex.main=1.5)	
 dev.off()
 
-outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_HAP-PHASE.png")
-png(outFile,width=1200,height=400,res=100)
-#pdf(outFile,width=20,height=6)
+outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_HAP-PHASE.pdf")
+#png(outFile,width=1200,height=400,res=100)
+pdf(outFile,width=20,height=6)
 par(mfrow=c(1,1))
 plotHaplotypeFraction(results, chr=chrs, resultType = "HaplotypeRatio", colType = "Haplotypes", xlab="", ylim=c(0,1), cex=0.5, cex.axis=1.5, cex.lab=1.5)
 dev.off()
 
-outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_HAP-FRAC.png")
-png(outFile,width=1200,height=400,res=100)
-#pdf(outFile,width=20,height=6)
+outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_HAP-FRAC.pdf")
+#png(outFile,width=1200,height=400,res=100)
+pdf(outFile,width=20,height=6)
 par(mfrow=c(1,1))
 plotHaplotypeFraction(results, chr=chrs, resultType = "HaplotypeRatio", colType = "CopyNumber", xlab="", ylim=c(0,1), cex=0.5, cex.axis=1.5, cex.lab=1.5)
 dev.off()
 
-outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_CP.png")
-png(outFile,width=1200,height=400,res=100)
-#pdf(outFile,width=20,height=6)
+outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_CP.pdf")
+#png(outFile,width=1200,height=400,res=100)
+pdf(outFile,width=20,height=6)
 plotClonalFrequency(dataIn=results, chr=chrs, norm, geneAnnot=genes, spacing=4, main=id, xlab="", ylim=c(0,1), cex.axis=1.5, cex.lab=1.5, cex.main=1.5)
 dev.off()
 
-outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_LOH-SEG.png")
+outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_LOH-SEG.pdf")
 maxCorCN <- segs[Chromosome %in% chrs, max(Corrected_Copy_Number, na.rm = TRUE)]
-png(outFile,width=1200,height=400,res=100)
-#pdf(outFile, width=20, height=6)
+#png(outFile,width=1200,height=400,res=100)
+pdf(outFile, width=20, height=6)
 plotSegmentMedians(dataIn=segs, chr=chrs, resultType = "AllelicRatio", plotType = "CopyNumber", plot.new=T, ylim=c(0, maxCorCN), cex.axis=1.5, cex.lab=1.5, cex.main=1.5)
 dev.off()
 
 
 if (as.numeric(numClusters) <= 2){
-	outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_subclone.png")
-	png(outFile,width=1200,height=400,res=100)
-	#pdf(outFile,width=20,height=6)
+	outFile <- paste0(outplot, "/", id, "_cluster", numClustersStr, "_subclone.pdf")
+	#png(outFile,width=1200,height=400,res=100)
+	pdf(outFile,width=20,height=6)
 	plotSubcloneProfiles(dataIn=results, chr=chrs, cex = 0.5, spacing=4, main=id, cex.axis=1.5, xlab="")
 	dev.off()
 }
