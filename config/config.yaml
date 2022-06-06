@@ -61,7 +61,7 @@ het_minMapQuality:  20
 TitanCNA_maxNumClonalClusters: 2
 TitanCNA_chrs:  c(1:22, \"X\")
 TitanCNA_normalInit:  0.5
-TitanCNA_maxPloidy:  4
+TitanCNA_maxPloidy:  3
 TitanCNA_maxCN:  8
 TitanCNA_haplotypeBinSize: 1e5
 TitanCNA_estimateNormal:  map
